@@ -7,7 +7,8 @@ public class EnemyMovement : MonoBehaviour{
     public float moveSpeed;
     private Rigidbody2D rb;
     private Vector2 movement;
-
+    public Rigidbody2D caracterRigidbody;
+    public PlayerHealth caracter;
     // Start is called before the first frame update
     void Start(){
         rb = this.GetComponent<Rigidbody2D>();
@@ -20,11 +21,27 @@ public class EnemyMovement : MonoBehaviour{
         rb.rotation = angle;
         direction.Normalize();
         movement = direction;
+        
     }
     private void FixedUpdate() {
-        moveCharacter(movement);
+
+       if(Vector2.Distance(transform.position, player.position) < 4){
+             moveCharacter(movement);
+            
+                
+             
+
+        }
+    }
+    void OnCollisionEnter( Collision col){
+        if(col.collider.name == "caracter"){
+            caracter.currentHealth-=2;
+            caracterRigidbody.AddForce( Time.deltaTime*(player.position - transform.position).normalized * +400f);
+        }
+    
     }
     void moveCharacter(Vector2 direction){
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
+    
 }
