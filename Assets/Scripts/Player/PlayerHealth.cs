@@ -6,7 +6,6 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth=20;
     public int currentHealth;
-
     public HealthBar healthBar;
 
     void Start()
@@ -26,6 +25,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Enemy"){
+            TakeDamage(1);
+        
+        }
     }
 
 }

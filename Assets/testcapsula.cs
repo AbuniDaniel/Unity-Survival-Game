@@ -10,6 +10,9 @@ public class testcapsula : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     public float range;
+    public float knockbackPower=100;
+    public float knockbackDuration=1;
+    private Vector2 direction;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +31,7 @@ public class testcapsula : MonoBehaviour
     
     void FixedUpdate() {
         if(Vector2.Distance(transform.position, target.position) < range + 3){
-            Vector3 direction = target.position - transform.position;
+            direction = target.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             rb.rotation = angle;
             direction.Normalize();
@@ -38,5 +41,15 @@ public class testcapsula : MonoBehaviour
             }
         }
         
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform, direction ));
+        }    
+
+        
+    
     }
 }
