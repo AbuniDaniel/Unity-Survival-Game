@@ -34,10 +34,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0)){
             animator.SetTrigger("Attack");
         }
-        if( Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetTrigger("Attack");
-        }
     }
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj, Vector3 direction)
     {

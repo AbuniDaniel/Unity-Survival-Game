@@ -27,10 +27,6 @@ public class EnemyMovement : MonoBehaviour{
 
        if(Vector2.Distance(transform.position, player.position) < 4){
              moveCharacter(movement);
-            
-                
-             
-
         }
     }
     void moveCharacter(Vector2 direction){
