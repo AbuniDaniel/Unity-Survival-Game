@@ -38,9 +38,9 @@ public class PlayerMovement : MonoBehaviour
         float timer=0;
         while (knockbackDuration> timer)
         {
-            
+            Input.ResetInputAxes();
             timer += Time.fixedDeltaTime;
-            rb.AddForce( direction.normalized * knockbackPower , ForceMode2D.Force);
+            rb.AddForce( direction.normalized * knockbackPower );
             yield return 0;
         }
         

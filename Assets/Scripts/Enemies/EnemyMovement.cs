@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour{
     void Update(){
         Vector3 direction = player.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
+        rb.rotation = -angle;
         direction.Normalize();
         movement = direction;
         
@@ -32,13 +32,6 @@ public class EnemyMovement : MonoBehaviour{
              
 
         }
-    }
-    void OnCollisionEnter( Collision col){
-        if(col.collider.name == "caracter"){
-            caracter.currentHealth-=2;
-            caracterRigidbody.AddForce( Time.deltaTime*(player.position - transform.position).normalized * +400f);
-        }
-    
     }
     void moveCharacter(Vector2 direction){
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
