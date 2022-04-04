@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
     public Camera cam;
-
     Vector2 movement;
     Vector2 mousePos;
     private void Awake()
@@ -32,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+        
     }
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj, Vector3 direction)
     {
@@ -45,4 +45,5 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+
 }
