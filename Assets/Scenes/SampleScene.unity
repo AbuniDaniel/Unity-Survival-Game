@@ -1621,7 +1621,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!50 &784656567
 Rigidbody2D:
@@ -1726,6 +1726,7 @@ MonoBehaviour:
   moveSpeed: 3
   rb: {fileID: 784656567}
   cam: {fileID: 519420031}
+  animator: {fileID: 784656574}
 --- !u!114 &784656572
 MonoBehaviour:
   m_ObjectHideFlags: 0

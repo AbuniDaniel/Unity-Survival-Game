@@ -6,9 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
     public float moveSpeed = 5f;
-
     public Rigidbody2D rb;
     public Camera cam;
+    public Animator animator;
     Vector2 movement;
     Vector2 mousePos;
     private void Awake()
@@ -31,7 +31,13 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
-        
+        if (Input.GetMouseButtonDown(0)){
+            animator.SetTrigger("Attack");
+        }
+        if( Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetTrigger("Attack");
+        }
     }
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj, Vector3 direction)
     {
