@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 mousePos;
     private void Awake()
     {
-        instance= this;
+        instance = this;
     }
     // Update is called once per frame
     void Update()
@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetMouseButtonDown(0)){
+            animator.SetTrigger("Attack");
+        }
     }
 
     private void FixedUpdate()
@@ -31,9 +34,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
-        if (Input.GetMouseButtonDown(0)){
-            animator.SetTrigger("Attack");
-        }
+        
     }
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj, Vector3 direction)
     {
