@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-public class PlayerHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth=20;
+    public int maxHealth=40;
     public int currentHealth;
     public HealthBar healthBar;
-    public UnityEvent onDead;
+    public UnityEvent OnHit, OnHeal, OnDead;
     void Start()
     {
-        Time.timeScale=1;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
@@ -21,23 +19,23 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);
         }
-        if( currentHealth <= 0)
-        {
-
-            onDead?.Invoke();
-            Time.timeScale=0;
-
-        }
     }
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+         if (currentHealth <= 0)
+        {
+            OnDead?.Invoke();
+        }
+        else
+        {
+            OnHit?.Invoke();
+        }
         healthBar.SetHealth(currentHealth);
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Enemy"){
+        if(other.gameObject.tag == "Pickaxe"){
             TakeDamage(1);
         
         }
