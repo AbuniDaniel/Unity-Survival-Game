@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0)){
             animator.SetTrigger("Attack");
+            
         }
     }
 
