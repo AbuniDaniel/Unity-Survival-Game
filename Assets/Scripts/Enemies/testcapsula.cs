@@ -13,6 +13,12 @@ public class testcapsula : MonoBehaviour
     public float knockbackPower=100;
     public float knockbackDuration=1;
     private Vector2 direction;
+
+    //Patroling
+    public Vector3 walkPoint;
+    bool walkPointSet = false;
+    public float walkPointRange;
+    public LayerMask whatIsGround;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +46,9 @@ public class testcapsula : MonoBehaviour
             agent.SetDestination(target.position);
             }
         }
+        if(Vector2.Distance(transform.position, target.position) > range){
+                Patroling();
+            }
         
     }
     private void OnCollisionEnter2D(Collision2D other)
@@ -48,8 +57,42 @@ public class testcapsula : MonoBehaviour
         {
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform, direction ));
         }    
+    }
 
-        
-    
+    private void Patroling()
+    {
+        if (!walkPointSet) SearchWalkPoint();
+
+        if (walkPointSet)
+            direction = walkPoint - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            rb.rotation = angle;
+            agent.SetDestination(walkPoint);
+        if (Vector3.Distance(transform.position, walkPoint) < 1f)
+            walkPointSet = false;
+    }
+
+    private void SearchWalkPoint()
+    {
+
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomY = Random.Range(-walkPointRange, walkPointRange);
+
+        float xcheck = transform.position.x + randomX;
+        float ycheck = transform.position.y + randomY;
+
+        if(ycheck > 30)
+            ycheck = 30;
+        if(ycheck < -60)
+            ycheck = -60;
+
+        if(xcheck < -82)
+            xcheck = -82;
+        if(xcheck > 115)
+            xcheck = 115;
+
+        walkPoint = new Vector3(xcheck, ycheck, transform.position.z);
+
+        walkPointSet = true;
     }
 }

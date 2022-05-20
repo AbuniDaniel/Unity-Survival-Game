@@ -11,6 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     Vector2 movement;
     Vector2 mousePos;
+
+    // pentru attack
+    public Transform attackPos;
+    public LayerMask whatIsEnemies;
+    public float attakRange;
+    public int damage;
+
     private void Awake()
     {
         instance = this;
@@ -24,8 +31,17 @@ public class PlayerMovement : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0)){
             animator.SetTrigger("Attack");
-            
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attakRange, whatIsEnemies);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
+            {
+                enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(damage);
+            }
         }
+    }
+
+    void OnDrawGizmosSelected(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, attakRange);
     }
 
     private void FixedUpdate()

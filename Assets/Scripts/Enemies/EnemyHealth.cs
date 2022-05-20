@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public UnityEvent OnHit, OnHeal, OnDead;
+    public Rigidbody2D rb;
+    public testcapsula test;
     void Start()
     {
         currentHealth = maxHealth;
@@ -20,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
             TakeDamage(1);
         }
     }
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
          if (currentHealth <= 0)
@@ -33,12 +35,13 @@ public class EnemyHealth : MonoBehaviour
         }
         healthBar.SetHealth(currentHealth);
     }
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Pickaxe"){
             TakeDamage(1);
-        
+            rb.AddForce(transform.position * (-200));
         }
     }
-
+    */
 }
