@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     // pentru attack
     public Transform attackPos;
     public LayerMask whatIsEnemies;
+    public LayerMask whatIsNeutral;
     public float attakRange;
     public int damage;
     public float attackRate = 2f;
@@ -35,12 +36,19 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetMouseButtonDown(0)){
                 animator.SetTrigger("Attack");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attakRange, whatIsEnemies);
+                Collider2D[] neutralToDamage = Physics2D.OverlapCircleAll(attackPos.position, attakRange, whatIsNeutral);
+
                 for (int i = 0; i < enemiesToDamage.Length; i++){
                     enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(damage);
+                }
+               
+                for (int i = 0; i < neutralToDamage.Length; i++){
+                    neutralToDamage[i].GetComponent<TreeHealth>().TakeDamage(damage);
                 }
                 nextAttackTime = Time.time + 1f / attackRate;
         }
         }
+        
     }
 
     void OnDrawGizmosSelected(){

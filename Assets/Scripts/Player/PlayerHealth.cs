@@ -26,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
 
             onDead?.Invoke();
             Time.timeScale=0;
-
         }
     }
     void TakeDamage(int damage)

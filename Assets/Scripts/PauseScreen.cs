@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseScreen : MonoBehaviour
 {
-
+    
     public void ResumeButton( )
     {   
         Time.timeScale = 1;
