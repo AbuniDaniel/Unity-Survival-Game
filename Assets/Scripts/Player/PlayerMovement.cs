@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsEnemies;
     public float attakRange;
     public int damage;
+    public float attackRate = 2f;
+    public float nextAttackTime = 0f;
 
     private void Awake()
     {
@@ -29,13 +31,15 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0)){
-            animator.SetTrigger("Attack");
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attakRange, whatIsEnemies);
-            for (int i = 0; i < enemiesToDamage.Length; i++)
-            {
-                enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(damage);
-            }
+        if(Time.time >= nextAttackTime){
+            if (Input.GetMouseButtonDown(0)){
+                animator.SetTrigger("Attack");
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attakRange, whatIsEnemies);
+                for (int i = 0; i < enemiesToDamage.Length; i++){
+                    enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(damage);
+                }
+                nextAttackTime = Time.time + 1f / attackRate;
+        }
         }
     }
 
