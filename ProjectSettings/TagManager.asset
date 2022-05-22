@@ -8,6 +8,9 @@ TagManager:
   - Pickaxe
   - Sword
   - Axe
+  - Neutral
+  - Tree
+  - Rock
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
+  - Neutral
   - 
   - 
   - 

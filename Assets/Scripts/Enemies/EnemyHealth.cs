@@ -53,6 +53,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            ScoreManager.instance.AddPoints(10);
             Destroy(gameObject, 1f);
         }
         else

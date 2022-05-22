@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public UnityEvent onDead;
+
     void Start()
     {
         Time.timeScale=1;

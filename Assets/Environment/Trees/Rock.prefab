@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 106909614959180707}
   m_Layer: 8
   m_Name: Rock
-  m_TagString: Neutral
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa31ed1b95d24e439e5207ba84b97da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 20
   currentHealth: 0
   healthBar: {fileID: 5988719754412687041}
   OnHit:

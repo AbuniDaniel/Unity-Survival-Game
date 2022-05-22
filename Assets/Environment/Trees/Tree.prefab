@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: -8993290683343254222}
   m_Layer: 8
   m_Name: Tree
-  m_TagString: Neutral
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa31ed1b95d24e439e5207ba84b97da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 20
   currentHealth: 0
   healthBar: {fileID: 3761985864882803746}
   OnHit:

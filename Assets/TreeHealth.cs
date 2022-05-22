@@ -49,6 +49,7 @@ public class TreeHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            ScoreManager.instance.AddPoints(3);
             Destroy(gameObject, 1f);
         }
         else
