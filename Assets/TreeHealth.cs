@@ -51,6 +51,7 @@ public class TreeHealth : MonoBehaviour
         {
             ScoreManager.instance.AddPoints(3);
             Destroy(gameObject, 1f);
+            transform.parent.gameObject.GetComponent<LevelGeneration>().SpawnNewObj();
         }
         else
         {

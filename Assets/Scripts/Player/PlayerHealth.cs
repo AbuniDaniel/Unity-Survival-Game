@@ -15,9 +15,12 @@ public class PlayerHealth : MonoBehaviour
         Time.timeScale=1;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        StartCoroutine(Healing());
+        
     }
     void Update()
     {
+
         if( Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(1);
@@ -42,5 +45,18 @@ public class PlayerHealth : MonoBehaviour
         
         }
     }
+
+    IEnumerator Healing(){
+         while (true){ 
+     if (currentHealth < maxHealth){ 
+       currentHealth += 1;
+       healthBar.SetHealth(currentHealth);
+       yield return new WaitForSeconds(5);
+     } else {
+       yield return null;
+     }
+   }
+     }
+
 
 }

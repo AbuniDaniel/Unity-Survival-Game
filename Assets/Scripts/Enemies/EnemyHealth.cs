@@ -55,6 +55,7 @@ public class EnemyHealth : MonoBehaviour
         {
             ScoreManager.instance.AddPoints(10);
             Destroy(gameObject, 1f);
+            transform.parent.gameObject.GetComponent<EnemyGeneration>().SpawnNewObj();
         }
         else
         {

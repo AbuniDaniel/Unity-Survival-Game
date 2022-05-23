@@ -19,24 +19,44 @@ public class testcapsula : MonoBehaviour
     bool walkPointSet = false;
     public float walkPointRange;
     public LayerMask whatIsGround;
+
     // Start is called before the first frame update
     void Start()
     {
+        target = transform.parent.GetComponent<EnemyGeneration>().target;
         rb = this.GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
+        //agent.enabled = false;
+        //Invoke("EnableNavMeshAgent", 5f);
+        //Invoke("WarpAgent", 5.2f);
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+    }
+
+    private void WarpAgent (){
+    agent.Warp(transform.parent.position);
+    }
+
+    private void EnableNavMeshAgent (){
+    agent.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        
     }
     
+    void OnDrawGizmosSelected(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
+
+    }
+
     void FixedUpdate() {
-        if(Vector2.Distance(transform.position, target.position) < range + 3){
+        
+
+        if(Vector2.Distance(transform.position, target.position) < range){
             direction = target.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             rb.rotation = angle;

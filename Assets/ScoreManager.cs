@@ -6,6 +6,8 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText2;
+    public TextMeshProUGUI scoreText3;
 
     public static ScoreManager instance;
 
@@ -18,11 +20,15 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         scoreText.text = score.ToString() + " POINTS";
+        scoreText2.text = score.ToString() + " POINTS";
+        scoreText3.text = score.ToString() + " POINTS";
     }
 
     public void AddPoints(int points){
         score += points;
         scoreText.text = score.ToString() + " POINTS";
+        scoreText2.text = score.ToString() + " POINTS";
+        scoreText3.text = score.ToString() + " POINTS";
     }
 
 }
