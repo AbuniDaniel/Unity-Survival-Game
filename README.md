@@ -1,4 +1,4 @@
-# Survivor game made in Unity (C#)
+# Survival game made in Unity (C#)
  
 - the goal of the game is for the player to survive as long as possible by collecting points by killing enemies or destroying various objects placed on the map
 
